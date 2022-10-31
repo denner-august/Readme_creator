@@ -17,15 +17,28 @@ export function Inputs() {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<inputsProps>();
+  } = useForm<any>({
+    mode: "all",
+  });
 
-  function ReceberDAdos(data: inputsProps) {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "products",
+  });
+
+  function receberDados(data: inputsProps) {
     console.log(data);
   }
 
+  function Adicionar() {
+    append({
+      redeSocial: "",
+      link_RedeSocial: "",
+    });
+  }
+
   return (
-    <form onSubmit={handleSubmit(ReceberDAdos)} className={styles.Container}>
-      {/* register your input into the hook by invoking the "register" function */}
+    <form onSubmit={handleSubmit(receberDados)} className={styles.Container}>
       <label>Titulo do seu projeto</label>
       <input placeholder="qual o nome do seu projeto" {...register("titulo")} />
       <label>Descrição Do seu projeto</label>
@@ -37,22 +50,26 @@ export function Inputs() {
       <label>Redes sociais</label>
 
       <ul className={styles.input_redeSocial}>
-        <li>
-          <input placeholder="nome da rede social" {...register("nome")} />
-          <input placeholder="link da rede social" {...register("link")} />
-        </li>
-        {/* <li>
-          <input placeholder="nome da rede social" />
-          <input placeholder="link da rede social" />
-        </li> */}
-
-        <li></li>
+        {fields.map((products, index) => (
+          <div key={products.id}>
+            <input
+              required
+              placeholder="nome da rede social"
+              {...register(`products.${index}.redeSocial`)}
+            />
+            <input
+              required
+              placeholder="link da rede social"
+              {...register(`products.${index}.link_RedeSocial`)}
+            />
+          </div>
+        ))}
       </ul>
 
       <ul className={styles.add_redeSocial}>
         <p>Adicionar mais redes sociais</p>
-        <button>sim</button>
-        <button>não</button>
+        <button onClick={Adicionar}>sim</button>
+        <button>Nao</button> {/* criar função que remove uma rede social */}
       </ul>
 
       <input type="submit" />
