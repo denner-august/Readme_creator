@@ -1,24 +1,59 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import styles from "./inputs.module.scss";
+
+interface inputsProps {
+  titulo: string;
+  descrição: string;
+  social: string;
+  nome: String;
+  link: string;
+
+  testando: string;
+}
 
 export function Inputs() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-  const onSubmit = handleSubmit((data) => console.log(data));
+    control,
+  } = useForm<inputsProps>();
+
+  function ReceberDAdos(data: inputsProps) {
+    console.log(data);
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.Container}>
+    <form onSubmit={handleSubmit(ReceberDAdos)} className={styles.Container}>
       {/* register your input into the hook by invoking the "register" function */}
       <label>Titulo do seu projeto</label>
-      <input defaultValue="" {...register("titulo")} />
+      <input placeholder="qual o nome do seu projeto" {...register("titulo")} />
       <label>Descrição Do seu projeto</label>
       <textarea
-        defaultValue="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        placeholder="descreva sobre seu projeto, o que você planeja fazer"
         {...register("descrição")}
       />
+      {/* adicionar imagem */}
+      <label>Redes sociais</label>
+
+      <ul className={styles.input_redeSocial}>
+        <li>
+          <input placeholder="nome da rede social" {...register("nome")} />
+          <input placeholder="link da rede social" {...register("link")} />
+        </li>
+        {/* <li>
+          <input placeholder="nome da rede social" />
+          <input placeholder="link da rede social" />
+        </li> */}
+
+        <li></li>
+      </ul>
+
+      <ul className={styles.add_redeSocial}>
+        <p>Adicionar mais redes sociais</p>
+        <button>sim</button>
+        <button>não</button>
+      </ul>
 
       <input type="submit" />
     </form>
