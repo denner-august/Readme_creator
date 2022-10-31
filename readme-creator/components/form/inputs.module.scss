@@ -1,0 +1,41 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input,
+  textarea {
+    color: white;
+    border-color: white;
+    border-style: solid;
+
+    padding: 1rem;
+    font-size: 1.5rem;
+
+    width: 90%;
+    height: auto;
+
+    margin: 1rem 0px;
+
+    border-radius: 10px;
+
+    text-align: center;
+  }
+
+  label {
+    color: white;
+    font-size: 2.5rem;
+  }
+
+  textarea {
+    height: 10rem;
+  }
+
+  input[type="submit"] {
+    color: red;
+    font-size: 2rem;
+    width: 50%;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
