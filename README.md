@@ -1,2 +1,3 @@
 # Readme_creator
- facilitador na hora de criar seu readme
+
+## A ideia principal é ser um facilitador na hora de criar seu readme 
