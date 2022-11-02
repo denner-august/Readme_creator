@@ -1,17 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
+import { Context } from "../../context/Dados";
 import styles from "./inputs.module.scss";
 
-interface inputsProps {
-  titulo: string;
-  descrição: string;
-  social: string;
-  nome: String;
-  link: string;
-}
-
 export function Inputs() {
-  const [images, setImages] = useState(0);
+  const { images, setImages, receberDados, Exibir_results } =
+    useContext(Context);
 
   const {
     register,
@@ -25,10 +19,6 @@ export function Inputs() {
     name: "products",
   });
 
-  function receberDados(data: inputsProps) {
-    console.log({ ...data, images });
-  }
-
   function Adicionar() {
     append({
       redeSocial: "",
@@ -38,11 +28,11 @@ export function Inputs() {
 
   function add_remove_Images(request: string) {
     if (request === "add") {
-      return setImages((preve) => preve + 1);
+      return setImages(images + 1);
     }
 
     if (images > 0 && request === "remove") {
-      return setImages((preve) => preve - 1);
+      return setImages(images - 1);
     }
   }
 
@@ -54,7 +44,7 @@ export function Inputs() {
         placeholder="qual o nome do seu projeto"
         {...register("titulo")}
       />
-      <label>Descrição Do seu projeto</label>
+      <label>Descrição do seu projeto</label>
       <textarea
         required
         placeholder="descreva sobre seu projeto, o que você planeja fazer"
@@ -102,7 +92,7 @@ export function Inputs() {
         <button onClick={Adicionar}>Adicionar mais redes sociais?</button>
       </div>
 
-      <input type="submit" value="Gerar readme" />
+      <input type="submit" value="Gerar readme" onClick={Exibir_results} />
     </form>
   );
 }
