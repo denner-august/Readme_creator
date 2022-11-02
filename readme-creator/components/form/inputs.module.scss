@@ -54,12 +54,40 @@
     div {
       display: flex;
       justify-content: space-evenly;
-      margin: 0px 0px 0px 0px;
+      align-items: center;
     }
 
     input {
       width: 40%;
+      height: 4.5rem;
     }
+  }
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+
+  button,
+  span {
+    font-size: 2rem;
+    color: #fff;
+  }
+
+  span {
+    text-align: center;
+  }
+
+  button {
+    margin: 10px 0px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+  }
+
+  button:active {
+    background-color: rgb(63, 61, 61);
   }
 }
 
@@ -97,4 +125,21 @@
   button:active {
     background-color: rgb(60, 172, 206);
   }
+}
+
+.button_remove {
+  color: #ffff;
+
+  height: 4.5rem;
+  width: 5rem;
+
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+
+  cursor: pointer;
+}
+
+.button_remove:active {
+  background-color: rgb(63, 61, 61);
 }
