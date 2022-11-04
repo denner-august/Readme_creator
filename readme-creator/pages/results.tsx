@@ -7,8 +7,6 @@ import styles from "../styles/results.module.scss";
 export default function Results() {
   const { images, Dados } = useContext(Context);
 
-  console.log(Dados.products);
-
   const [textoImage, setTextoImage] = useState<string[]>([]);
   const texto =
     '![texto alternativo](apaque e coloque a url da sua imagem aqui "titulo")';
@@ -27,7 +25,7 @@ export default function Results() {
     <Principal>
       <div className={styles.Container}>
         <h1> # {Dados.titulo}</h1>
-        <p># {Dados.descrição}</p>
+        <p>## {Dados.descrição}</p>
 
         {textoImage.map((value, index) => {
           return (
@@ -37,7 +35,23 @@ export default function Results() {
           );
         })}
 
-        {}
+        <ul>
+          {Dados.products?.map((item) => {
+            return (
+              <div>
+                <li>
+                  <p>
+                    {item.redeSocial}: {item.link_RedeSocial}
+                  </p>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
+      </div>
+
+      <div className={styles.buttonLayout}>
+        <button className={styles.button}>Copiar</button>
       </div>
     </Principal>
   );
