@@ -6,4 +6,57 @@
   h1 {
     margin-bottom: 1rem;
   }
+
+  h1,
+  p {
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 15px 0px;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+
+    div {
+      display: flex;
+    }
+
+    li:nth-last-child(1) {
+      margin: 0px 0.5rem;
+    }
+  }
+}
+
+.buttonLayout {
+  display: flex;
+
+  justify-content: center;
+  .button {
+    font-size: 2rem;
+    min-width: auto;
+    width: 10rem;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 10px;
+
+    color: white;
+
+    border-style: solid;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+  }
+
+  .button:hover {
+    font-size: 2.5rem;
+  }
+
+  .button:active {
+    background-color: rgb(47, 62, 73);
+  }
 }
