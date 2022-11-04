@@ -4,8 +4,7 @@ import { createContext, ReactNode, useState } from "react";
 interface inputsProps {
   titulo?: string;
   descrição?: string;
-  social?: string;
-  link?: string;
+  products?: [{ social?: string; link?: string }];
 }
 
 interface Dados {
@@ -23,7 +22,7 @@ type ProviderProps = {
 export const Context = createContext({} as Dados);
 
 export default function ContextProvider({ children }: ProviderProps) {
-  const [images, setImages] = useState(0);
+  const [images, setImages] = useState(2);
   const [Dados, setTeste] = useState({});
 
   function receberDados(data: inputsProps) {
@@ -38,7 +37,7 @@ export default function ContextProvider({ children }: ProviderProps) {
     <Context.Provider
       value={{ images, setImages, receberDados, Dados, Exibir_results }}
     >
-      {children};
+      {children}
     </Context.Provider>
   );
 }
