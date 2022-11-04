@@ -4,7 +4,7 @@ import { createContext, ReactNode, useState } from "react";
 interface inputsProps {
   titulo?: string;
   descrição?: string;
-  products?: [{ social?: string; link?: string }];
+  products?: [{ redeSocial?: string; link_RedeSocial?: string }];
 }
 
 interface Dados {
