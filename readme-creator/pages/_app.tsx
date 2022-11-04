@@ -5,7 +5,7 @@ import ContextProvider from "../context/Dados";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ContextProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ContextProvider>
   );
 }
