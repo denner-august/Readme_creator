@@ -36,9 +36,9 @@ export default function Results() {
         })}
 
         <ul>
-          {Dados.products?.map((item) => {
+          {Dados.products?.map((item, index) => {
             return (
-              <div>
+              <div key={index}>
                 <li>
                   <p>
                     {item.redeSocial}: {item.link_RedeSocial}
@@ -51,7 +51,7 @@ export default function Results() {
       </div>
 
       <div className={styles.buttonLayout}>
-        <button className={styles.button}>Copiar</button>
+        <button className={styles.button}>Selecione tudo e copie</button>
       </div>
     </Principal>
   );
