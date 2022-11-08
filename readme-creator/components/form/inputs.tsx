@@ -1,18 +1,24 @@
 import { useContext } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
 import { Context } from "../../context/Dados";
 import styles from "./inputs.module.scss";
 
+import { useForm, useFieldArray } from "react-hook-form";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { formProps, Yupschema } from "../../yup/schema";
+
 export function Inputs() {
-  const { images, setImages, receberDados, Exibir_results } =
-    useContext(Context);
+  const { images, setImages, receberDados } = useContext(Context);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<any>();
+  } = useForm<formProps>({
+    resolver: yupResolver(Yupschema),
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -26,27 +32,27 @@ export function Inputs() {
     });
   }
 
-  function add_remove_Images(request: string) {
+  function add_remove_Images(event: React.FormEvent, request: string) {
+    event.preventDefault();
+
     if (request === "add") {
-      return setImages(images + 1);
+      setImages(images + 1);
     }
 
     if (images > 0 && request === "remove") {
-      return setImages(images - 1);
+      setImages(images - 1);
     }
   }
 
   return (
     <form onSubmit={handleSubmit(receberDados)} className={styles.Container}>
       <label>Titulo do seu projeto</label>
-      <input
-        required
-        placeholder="qual o nome do seu projeto"
-        {...register("titulo")}
-      />
+      <p>{errors.titulo?.message}</p>
+      <input placeholder="qual o nome do seu projeto" {...register("titulo")} />
+
       <label>Descrição do seu projeto</label>
+      <p>{errors.descrição?.message}</p>
       <textarea
-        required
         placeholder="descreva sobre seu projeto, o que você planeja fazer"
         {...register("descrição")}
       />
@@ -58,8 +64,12 @@ export function Inputs() {
 
         <span>{images}</span>
 
-        <button onClick={() => add_remove_Images("add")}>Adicionar</button>
-        <button onClick={() => add_remove_Images("remove")}>Remover</button>
+        <button onClick={(event) => add_remove_Images(event, "add")}>
+          Adicionar
+        </button>
+        <button onClick={(event) => add_remove_Images(event, "remove")}>
+          Remover
+        </button>
       </div>
 
       <label>Redes sociais</label>
@@ -77,13 +87,14 @@ export function Inputs() {
               placeholder="link da rede social"
               {...register(`products.${index}.link_RedeSocial`)}
             />
-
             <button
               className={styles.button_remove}
               onClick={() => remove(Number(index))}
             >
               Remover
             </button>
+
+            <p>{errors.redeSocial?.message}</p>
           </div>
         ))}
       </ul>
@@ -92,7 +103,7 @@ export function Inputs() {
         <button onClick={Adicionar}>Adicionar mais redes sociais?</button>
       </div>
 
-      <input type="submit" value="Gerar readme" onClick={Exibir_results} />
+      <input type="submit" value="Gerar readme" />
     </form>
   );
 }
