@@ -4,7 +4,7 @@ import { createContext, ReactNode, useState } from "react";
 interface inputsProps {
   titulo?: string;
   descrição?: string;
-  products?: [{ redeSocial?: string; link_RedeSocial?: string }];
+  products?: { redeSocial?: string; link_RedeSocial?: string }[];
 }
 
 interface Dados {
@@ -22,11 +22,12 @@ type ProviderProps = {
 export const Context = createContext({} as Dados);
 
 export default function ContextProvider({ children }: ProviderProps) {
-  const [images, setImages] = useState(2);
-  const [Dados, setTeste] = useState({});
+  const [images, setImages] = useState(0);
+  const [Dados, setDados] = useState({});
 
   function receberDados(data: inputsProps) {
-    setTeste(data);
+    setDados(data);
+    Exibir_results();
   }
 
   function Exibir_results() {
