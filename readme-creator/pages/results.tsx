@@ -9,7 +9,7 @@ export default function Results() {
 
   const [textoImage, setTextoImage] = useState<string[]>([]);
   const texto =
-    '![texto alternativo](apaque e coloque a url da sua imagem aqui "titulo")';
+    '![texto alternativo](apague e coloque a url da sua imagem aqui "titulo")';
 
   useEffect(() => {
     for (let index = 1; index <= images; index++) {
