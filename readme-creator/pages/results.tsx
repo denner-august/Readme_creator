@@ -19,7 +19,7 @@ export default function Results() {
     return () => {
       setTextoImage([]);
     };
-  }, []);
+  }, [images]);
 
   return (
     <Principal>
