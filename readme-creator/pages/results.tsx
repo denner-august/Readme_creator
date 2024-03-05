@@ -12,8 +12,11 @@ export default function Results() {
     '![texto alternativo](apague e coloque a url da sua imagem aqui "titulo")';
 
   useEffect(() => {
-    for (let index = 1; index <= images; index++) {
+    let index = 1;
+
+    while (index <= images) {
       setTextoImage((preve) => (preve = [...preve, texto]));
+      index++;
     }
 
     return () => {
@@ -25,7 +28,9 @@ export default function Results() {
     <Principal>
       <div className={styles.Container}>
         <h1> # {Dados.titulo}</h1>
+        <br />
         <p>## {Dados.descrição}</p>
+        <br />
 
         {textoImage.map((value, index) => {
           return (
@@ -41,7 +46,9 @@ export default function Results() {
               <div key={index}>
                 <li>
                   <p>
-                    {item.redeSocial}: {item.link_RedeSocial}
+                    {item.redeSocial}:{"<"}
+                    {item.link_RedeSocial}
+                    {">"}
                   </p>
                 </li>
               </div>

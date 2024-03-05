@@ -12,10 +12,10 @@ export function Inputs() {
   const { images, setImages, receberDados } = useContext(Context);
 
   const {
-    register,
     handleSubmit,
-    formState: { errors },
     control,
+    register,
+    formState: { errors },
   } = useForm<formProps>({
     resolver: yupResolver(Yupschema),
   });

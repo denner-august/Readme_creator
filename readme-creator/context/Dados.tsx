@@ -2,9 +2,9 @@ import Router from "next/router";
 import { createContext, ReactNode, useState } from "react";
 
 interface inputsProps {
-  titulo?: string;
-  descrição?: string;
-  products?: { redeSocial?: string; link_RedeSocial?: string }[];
+  titulo: string;
+  descrição: string;
+  products?: { redeSocial: string; link_RedeSocial: string }[];
 }
 
 interface Dados {
@@ -23,7 +23,7 @@ export const Context = createContext({} as Dados);
 
 export default function ContextProvider({ children }: ProviderProps) {
   const [images, setImages] = useState(0);
-  const [Dados, setDados] = useState({});
+  const [Dados, setDados] = useState({} as inputsProps);
 
   function receberDados(data: inputsProps) {
     setDados(data);
